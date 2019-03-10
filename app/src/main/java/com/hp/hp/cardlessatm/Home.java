@@ -178,7 +178,7 @@ namehead=findViewById(R.id.usernameheading);
 
                         try{
                             jobject=new JSONObject(content);
-
+//OTP FOR THE USER
                              otp=jobject.getString("details");
                             SmsManager smsManager = SmsManager.getDefault();
                             smsManager.sendTextMessage(phones, null, "Your otp for cardlessATM is "+otp, null, null);
@@ -243,6 +243,8 @@ namehead=findViewById(R.id.usernameheading);
     }
 
 
-
+    public void History(View view) {
+        startActivity(new Intent(Home.this,History.class));
     }
+}
 

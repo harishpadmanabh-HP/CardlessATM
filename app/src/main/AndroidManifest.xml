@@ -5,7 +5,9 @@
     <uses-permission android:name="android.permission.SEND_SMS" />
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.CAMERA"></uses-permission>
+    <uses-permission android:name="android.permission.CAMERA">
+
+    </uses-permission>
 
     <application
         android:allowBackup="true"
@@ -14,14 +16,16 @@
         android:roundIcon="@drawable/ic_gold_medal"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Splash" />
-        <activity android:name=".Login">
+        <activity android:name=".Splash" >
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
+            <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Login">
+
+         </activity>
 
         <service android:name=".Firebaseidservice">
             <intent-filter>

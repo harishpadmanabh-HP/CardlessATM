@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "878528197875",
+    "firebase_url": "https://cardlessatm-d9ccb.firebaseio.com",
+    "project_id": "cardlessatm-d9ccb",
+    "storage_bucket": "cardlessatm-d9ccb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:878528197875:android:50b023f4e96b61c9",
+        "android_client_info": {
+          "package_name": "com.hp.hp.cardlessatm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "878528197875-bmmqqi6kmr6igo2f1eokdvfcl3dphioa.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hp.hp.cardlessatm",
+            "certificate_hash": "c830c5e777410280322fe40a4e261d4d32abd1fa"
+          }
+        },
+        {
+          "client_id": "878528197875-9u7frqtrmtg2dntpmd5p6u3c86am88ig.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQXteLsio13PJ2vNnfOVTfgubX2WmJwMk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "878528197875-9u7frqtrmtg2dntpmd5p6u3c86am88ig.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

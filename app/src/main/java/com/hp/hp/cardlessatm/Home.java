@@ -180,9 +180,11 @@ namehead=findViewById(R.id.usernameheading);
                             jobject=new JSONObject(content);
 //OTP FOR THE USER
                              otp=jobject.getString("details");
-                            SmsManager smsManager = SmsManager.getDefault();
-                            smsManager.sendTextMessage(phones, null, "Your otp for cardlessATM is "+otp, null, null);
-
+                          //  SmsManager smsManager = SmsManager.getDefault();
+                           // smsManager.sendTextMessage(phones, null, "Your otp for cardlessATM is "+otp, null, null);
+getnotify(otp);
+                            startActivity(new Intent(Home.this,Home.class));
+                            Toast.makeText(Home.this, "OTP"+otp, Toast.LENGTH_LONG).show();
 
                         }catch (Exception e){
                             Toast.makeText(Home.this, "Exeption caught"+e, Toast.LENGTH_SHORT).show();
@@ -201,48 +203,90 @@ namehead=findViewById(R.id.usernameheading);
         alertdialoge.show();
 
 
-        NotificationManager notificationManager = (NotificationManager)
-                this.getSystemService(Context.NOTIFICATION_SERVICE);
-
-        Intent notificationIntent = new Intent(this, Home.class);
-
-        notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
-                | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-
-        PendingIntent intent =
-                PendingIntent.getActivity(this, 0,
-                        notificationIntent,PendingIntent.FLAG_UPDATE_CURRENT);
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(),
-                R.drawable.ic_gold_medal);
-        //  NotificationManager mnNotificationManager=(NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
-        String textTitle="CARDLESS ATM";
-        String textContent= "RECIEVED OTP";
-        String body= "YOUR OTP IS";
-        String message= "mm";
-        long when = System.currentTimeMillis();
-
-        Notification notification = new NotificationCompat.Builder(this)
-                .setContentTitle(textTitle)
-                .setContentText(message)
-                .setContentIntent(intent)
-                .setSmallIcon(R.drawable.ic_gold_medal)
-                .setWhen(when)
-                .setStyle(new NotificationCompat.BigPictureStyle()
-                        .bigPicture(bitmap).setSummaryText(message))
-                .build();
-//        notify.flags |= Notification.FLAG_AUTO_CANCEL;
-//        notif.notify(0, notify);
-
-        notification.flags |= Notification.FLAG_AUTO_CANCEL;
-
-// Play default notification sound
-        notification.defaults |= Notification.DEFAULT_SOUND;
-        notification.defaults |= Notification.DEFAULT_VIBRATE;
-        notificationManager.notify(0, notification);
+//        NotificationManager notificationManager = (NotificationManager)
+//                this.getSystemService(Context.NOTIFICATION_SERVICE);
+//
+//        Intent notificationIntent = new Intent(this, Home.class);
+//
+//        notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
+//                | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+//
+//        PendingIntent intent =
+//                PendingIntent.getActivity(this, 0,
+//                        notificationIntent,PendingIntent.FLAG_UPDATE_CURRENT);
+//        Bitmap bitmap = BitmapFactory.decodeResource(getResources(),
+//                R.drawable.ic_gold_medal);
+//        //  NotificationManager mnNotificationManager=(NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+//        String textTitle="CARDLESS ATM";
+//        String textContent= "RECIEVED OTP";
+//        String body= "YOUR OTP IS";
+//        String message="YOUR OTP IS "+ otp;
+//        long when = System.currentTimeMillis();
+//
+//        Notification notification = new NotificationCompat.Builder(this)
+//                .setContentTitle(textTitle)
+//                .setContentText(message)
+//                .setContentIntent(intent)
+//                .setSmallIcon(R.drawable.ic_gold_medal)
+//                .setWhen(when)
+//                .setStyle(new NotificationCompat.BigPictureStyle()
+//                        .bigPicture(bitmap).setSummaryText(message))
+//                .build();
+////        notify.flags |= Notification.FLAG_AUTO_CANCEL;
+////        notif.notify(0, notify);
+//
+//        notification.flags |= Notification.FLAG_AUTO_CANCEL;
+//
+//// Play default notification sound
+//        notification.defaults |= Notification.DEFAULT_SOUND;
+//        notification.defaults |= Notification.DEFAULT_VIBRATE;
+//        notificationManager.notify(0, notification);
 
     }
 
+public  void getnotify(String otp){
 
+    NotificationManager notificationManager = (NotificationManager)
+            this.getSystemService(Context.NOTIFICATION_SERVICE);
+
+    Intent notificationIntent = new Intent(this, Home.class);
+
+    notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
+            | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+
+    PendingIntent intent =
+            PendingIntent.getActivity(this, 0,
+                    notificationIntent,PendingIntent.FLAG_UPDATE_CURRENT);
+    Bitmap bitmap = BitmapFactory.decodeResource(getResources(),
+            R.drawable.ic_gold_medal);
+    //  NotificationManager mnNotificationManager=(NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+    String textTitle="CARDLESS ATM";
+    String textContent= "RECIEVED OTP";
+    String body= "YOUR OTP IS";
+    String message="OTP : "+ otp;
+    long when = System.currentTimeMillis();
+
+    Notification notification = new NotificationCompat.Builder(this)
+            .setContentTitle(textTitle)
+            .setContentText(message)
+            .setContentIntent(intent)
+            .setSmallIcon(R.drawable.ic_gold_medal)
+            .setWhen(when)
+            .setStyle(new NotificationCompat.BigPictureStyle()
+                    .bigPicture(bitmap).setSummaryText(message))
+            .build();
+//        notify.flags |= Notification.FLAG_AUTO_CANCEL;
+//        notif.notify(0, notify);
+
+    notification.flags |= Notification.FLAG_AUTO_CANCEL;
+
+// Play default notification sound
+    notification.defaults |= Notification.DEFAULT_SOUND;
+    notification.defaults |= Notification.DEFAULT_VIBRATE;
+    notificationManager.notify(0, notification);
+
+
+}
     public void History(View view) {
         startActivity(new Intent(Home.this,History.class));
     }

@@ -45,8 +45,6 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        String refreshedToken = FirebaseInstanceId.getInstance().getToken();
-       // Toast.makeText(this, ""+refreshedToken, Toast.LENGTH_SHORT).show();
 
         email=findViewById(R.id.email);
         phn=findViewById(R.id.phn);
@@ -60,6 +58,8 @@ public class Login extends AppCompatActivity {
     }
 
     public void login(View view) {
+        String refreshedToken = FirebaseInstanceId.getInstance().getToken();
+         Toast.makeText(this, ""+refreshedToken, Toast.LENGTH_SHORT).show();
 
         String emails= email.getText().toString();
         String phns=phn.getText().toString();

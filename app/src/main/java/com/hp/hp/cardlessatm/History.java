@@ -35,6 +35,8 @@ public class History extends AppCompatActivity {
     ArrayList<String>balance;
     ArrayList<String>date;
 
+    TextView namehead;
+
     String historyAPI="http://sicsglobal.com/WEBTEAM/WebT1/Cardless_ATM/Api/transaction_history";
     String paramskey="userid";
 
@@ -44,6 +46,8 @@ public class History extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
+
+        namehead=findViewById(R.id.usernameheading);
 
         client = new AsyncHttpClient();
         params = new RequestParams();
@@ -64,6 +68,7 @@ public class History extends AppCompatActivity {
         userids=sharedlogin.getString("userid",null);
         String qrcosdes=sharedlogin.getString("qrcode",null);
 
+        namehead.setText(names);
 
         params.put(paramskey,userids);
 

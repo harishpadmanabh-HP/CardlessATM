@@ -7,6 +7,7 @@
 
 
         <TextView
+            android:textColor="#000"
             android:id="@+id/bankidtxt"
             android:text="13"
             android:textSize="20dp"
@@ -15,6 +16,8 @@
             android:layout_weight="1"
              />
         <TextView
+            android:textColor="#000"
+
             android:id="@+id/datetext"
             android:layout_weight="1"
             android:textSize="20dp"
@@ -24,6 +27,8 @@
             android:layout_height="wrap_content"
             />
         <TextView
+            android:textColor="#000"
+
             android:textSize="20dp"
 
             android:id="@+id/debittext"
@@ -35,6 +40,8 @@
         />
 
     <TextView
+        android:textColor="#000"
+
         android:id="@+id/credittext"
 
         android:layout_width="wrap_content"
@@ -43,6 +50,8 @@
         android:text="5000"
         android:textSize="20dp" />
         <TextView
+            android:textColor="#000"
+
             android:textSize="20dp"
 
             android:id="@+id/balancetext"

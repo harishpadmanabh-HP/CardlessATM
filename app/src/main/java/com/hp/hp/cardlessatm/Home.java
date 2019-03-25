@@ -68,7 +68,7 @@ namehead=findViewById(R.id.usernameheading);
         String names=sharedlogin.getString("name",null);
         String emails=sharedlogin.getString("email",null);
          phones=sharedlogin.getString("number",null);
- userids=sharedlogin.getString("userid",null);
+        userids=sharedlogin.getString("userid",null);
         String qrcosdes=sharedlogin.getString("qrcode",null);
 
         namehead.setText(names);
@@ -170,7 +170,7 @@ namehead=findViewById(R.id.usernameheading);
                 editor.putString("qrcode",resultcode);
                 //Log.e("ENCODEINNN",msg);
                 editor.commit();
-                params.put("userid","2");
+                params.put("userid",userids);
                 client.post(OTPapi,params,new AsyncHttpResponseHandler(){
                     @Override
                     public void onSuccess(String content) {
@@ -180,8 +180,8 @@ namehead=findViewById(R.id.usernameheading);
                             jobject=new JSONObject(content);
 //OTP FOR THE USER
                              otp=jobject.getString("details");
-                          //  SmsManager smsManager = SmsManager.getDefault();
-                           // smsManager.sendTextMessage(phones, null, "Your otp for cardlessATM is "+otp, null, null);
+                            //SmsManager smsManager = SmsManager.getDefault();
+                          //  smsManager.sendTextMessage(phones, null, "Your otp for cardlessATM is "+otp, null, null);
 getnotify(otp);
                             startActivity(new Intent(Home.this,Home.class));
                             Toast.makeText(Home.this, "OTP"+otp, Toast.LENGTH_LONG).show();

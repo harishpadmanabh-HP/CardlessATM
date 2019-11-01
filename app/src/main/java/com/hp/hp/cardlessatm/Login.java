@@ -33,7 +33,7 @@ public class Login extends AppCompatActivity {
     EditText email,phn;
     Button login;
 
-    String loginapi="http://sicsglobal.com/WEBTEAM/WebT1/Cardless_ATM/Api/login";
+    String loginapi=Config.BASE_URL+"WEBTEAM/WebT1/Cardless_ATM/Api/login";
     String params1="email";
     String params2="num";
     String methodapi="POST";

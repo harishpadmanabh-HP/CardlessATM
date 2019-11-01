@@ -37,7 +37,7 @@ public class History extends AppCompatActivity {
 
     TextView namehead;
 
-    String historyAPI="http://sicsglobal.com/WEBTEAM/WebT1/Cardless_ATM/Api/transaction_history";
+    String historyAPI=Config.BASE_URL+"WEBTEAM/WebT1/Cardless_ATM/Api/transaction_history";
     String paramskey="userid";
 
     String userids,phones;

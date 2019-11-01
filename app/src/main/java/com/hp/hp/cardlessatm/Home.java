@@ -41,7 +41,7 @@ public class Home extends AppCompatActivity implements ZXingScannerView.ResultHa
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
     String userids,phones; String otp;
-    String OTPapi="http://sicsglobal.com/WEBTEAM/WebT1/Cardless_ATM/Api/push_notification_new";
+    String OTPapi=Config.BASE_URL+"WebT1/Cardless_ATM/Api/push_notification_new";
     String paramss="userid";
     AsyncHttpClient client;
     JSONArray jarray;

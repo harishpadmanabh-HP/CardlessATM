@@ -1,6 +1,7 @@
 package com.hp.hp.cardlessatm.Retro;
 
 import com.hp.hp.cardlessatm.Model.LoginModel;
+import com.hp.hp.cardlessatm.Model.OtpModel;
 
 
 import retrofit2.Call;
@@ -16,6 +17,10 @@ public interface Apis {
     @POST("login")
    Call<LoginModel> LOGIN_MODEL_CALL(@Field("email") String email,
                                      @Field("num") String num);
+
+    @FormUrlEncoded
+    @POST("push_notification")
+    Call<OtpModel> OTP_MODEL_CALL(@Field("userid") String uid);
 
 
 }

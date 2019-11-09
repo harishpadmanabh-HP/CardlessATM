@@ -2,6 +2,7 @@ package com.hp.hp.cardlessatm;
 
 import android.Manifest;
 import android.app.Notification;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -11,7 +12,11 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.net.Uri;
+import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
@@ -21,10 +26,13 @@ import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.zxing.Result;
+import com.hp.hp.cardlessatm.Model.OtpModel;
+import com.hp.hp.cardlessatm.Retro.Retro;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -33,6 +41,9 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class Home extends AppCompatActivity implements ZXingScannerView.ResultHandler {
     private ZXingScannerView scannerView;//test git
@@ -48,14 +59,17 @@ public class Home extends AppCompatActivity implements ZXingScannerView.ResultHa
     JSONObject jobject;
     RequestParams params;
     TextView namehead,name,email,phone;
+    NotificationHelper notificationHelper;
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
-        client = new AsyncHttpClient();
-        params = new RequestParams();
+//
+//        client = new AsyncHttpClient();
+//        params = new RequestParams();
+        notificationHelper=new NotificationHelper(this);
 
 namehead=findViewById(R.id.usernameheading);
         name=findViewById(R.id.username);
@@ -170,27 +184,59 @@ namehead=findViewById(R.id.usernameheading);
                 editor.putString("qrcode",resultcode);
                 //Log.e("ENCODEINNN",msg);
                 editor.commit();
-                params.put("userid",userids);
-                client.post(OTPapi,params,new AsyncHttpResponseHandler(){
+            //    params.put("userid",userids);
+
+                Retro retro=new Retro();
+                retro.getApi().OTP_MODEL_CALL(userids).enqueue(new Callback<OtpModel>() {
+                    @RequiresApi(api = Build.VERSION_CODES.O)
                     @Override
-                    public void onSuccess(String content) {
-                        super.onSuccess(content);
+                    public void onResponse(Call<OtpModel> call, Response<OtpModel> response) {
 
-                        try{
-                            jobject=new JSONObject(content);
-//OTP FOR THE USER
-                             otp=jobject.getString("details");
-                            //SmsManager smsManager = SmsManager.getDefault();
-                          //  smsManager.sendTextMessage(phones, null, "Your otp for cardlessATM is "+otp, null, null);
-getnotify(otp);
-                            startActivity(new Intent(Home.this,Home.class));
-                            Toast.makeText(Home.this, "OTP"+otp, Toast.LENGTH_LONG).show();
-
-                        }catch (Exception e){
-                            Toast.makeText(Home.this, "Exeption caught"+e, Toast.LENGTH_SHORT).show();
+                        OtpModel otpModel=response.body();
+                        Log.e("OTP", String.valueOf(otpModel.getDetails()));
+                        Notification.Builder nb = null;
+                        nb = notificationHelper.getNotification1(String.valueOf(otpModel.getDetails()), "Enter this otp on ATM screen");
+                        if (nb != null) {
+                            notificationHelper.notify(1100, nb);
+                            startActivity(new Intent(getApplicationContext(),Home.class));
                         }
+
+
+
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<OtpModel> call, Throwable t) {
+
                     }
                 });
+
+
+
+
+
+
+//                client.post(OTPapi,params,new AsyncHttpResponseHandler(){
+//                    @Override
+//                    public void onSuccess(String content) {
+//                        super.onSuccess(content);
+//
+//                        try{
+//                            jobject=new JSONObject(content);
+////OTP FOR THE USER
+//                             otp=jobject.getString("details");
+//                            //SmsManager smsManager = SmsManager.getDefault();
+//                          //  smsManager.sendTextMessage(phones, null, "Your otp for cardlessATM is "+otp, null, null);
+//getnotify(otp);
+//                            startActivity(new Intent(Home.this,Home.class));
+//                            Toast.makeText(Home.this, "OTP"+otp, Toast.LENGTH_LONG).show();
+//
+//                        }catch (Exception e){
+//                            Toast.makeText(Home.this, "Exeption caught"+e, Toast.LENGTH_SHORT).show();
+//                        }
+//                    }
+//                });
 
 
             }
@@ -290,5 +336,9 @@ public  void getnotify(String otp){
     public void History(View view) {
         startActivity(new Intent(Home.this,History.class));
     }
+
+
+
+
 }
 

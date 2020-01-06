@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.hp.hp.cardlessatm">
-    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY"></uses-permission>
+
+    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
     <uses-permission android:name="android.permission.SEND_SMS" />
-
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.CAMERA">
-
-    </uses-permission>
+    <uses-permission android:name="android.permission.CAMERA"></uses-permission>
 
     <application
         android:allowBackup="true"
@@ -15,18 +13,17 @@
         android:label="@string/app_name"
         android:roundIcon="@drawable/ic_gold_medal"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".Splash" >
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".Transactions"></activity>
+        <activity android:name=".Splash">
             <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Login">
-
-         </activity>
+        <activity android:name=".Login"></activity>
 
         <service android:name=".Firebaseidservice">
             <intent-filter>
@@ -41,7 +38,7 @@
 
         <activity android:name=".Home" />
         <activity android:name=".QR" />
-        <activity android:name=".History"></activity>
+        <activity android:name=".History" />
     </application>
 
 </manifest>

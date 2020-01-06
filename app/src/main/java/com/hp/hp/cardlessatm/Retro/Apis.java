@@ -1,5 +1,6 @@
 package com.hp.hp.cardlessatm.Retro;
 
+import com.hp.hp.cardlessatm.Model.HistoryModel;
 import com.hp.hp.cardlessatm.Model.LoginModel;
 import com.hp.hp.cardlessatm.Model.OtpModel;
 
@@ -22,5 +23,8 @@ public interface Apis {
     @POST("push_notification")
     Call<OtpModel> OTP_MODEL_CALL(@Field("userid") String uid);
 
+    @FormUrlEncoded
+    @POST("transaction_history")
+    Call<HistoryModel> HISTORY_MODEL_CALL(@Field("userid") String uid);
 
 }

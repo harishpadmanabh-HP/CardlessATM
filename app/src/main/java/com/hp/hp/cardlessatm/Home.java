@@ -84,6 +84,7 @@ namehead=findViewById(R.id.usernameheading);
          phones=sharedlogin.getString("number",null);
         userids=sharedlogin.getString("userid",null);
         String qrcosdes=sharedlogin.getString("qrcode",null);
+        Log.e("userid",userids);
 
         namehead.setText(names);
         name.setText(names);
@@ -194,12 +195,17 @@ namehead=findViewById(R.id.usernameheading);
 
                         OtpModel otpModel=response.body();
                         Log.e("OTP", String.valueOf(otpModel.getDetails()));
-                        Notification.Builder nb = null;
-                        nb = notificationHelper.getNotification1(String.valueOf(otpModel.getDetails()), "Enter this otp on ATM screen");
-                        if (nb != null) {
-                            notificationHelper.notify(1100, nb);
-                            startActivity(new Intent(getApplicationContext(),Home.class));
-                        }
+
+
+                        SmsManager smsManager = SmsManager.getDefault();
+                            smsManager.sendTextMessage(phones, null, "Your otp for cardlessATM is "+otpModel.getDetails(), null, null);
+//getnotify(otp);
+//                        Notification.Builder nb = null;
+//                        nb = notificationHelper.getNotification1(String.valueOf(otpModel.getDetails()), "Enter this otp on ATM screen");
+//                        if (nb != null) {
+//                            notificationHelper.notify(1100, nb);
+//                            startActivity(new Intent(getApplicationContext(),Home.class));
+                       // }
 
 
 
@@ -334,7 +340,7 @@ public  void getnotify(String otp){
 
 }
     public void History(View view) {
-        startActivity(new Intent(Home.this,History.class));
+        startActivity(new Intent(Home.this,Transactions.class));
     }
 
 
